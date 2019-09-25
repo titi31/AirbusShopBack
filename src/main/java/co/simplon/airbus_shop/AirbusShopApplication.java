@@ -29,16 +29,13 @@ public class AirbusShopApplication implements CommandLineRunner  {
     private UserRepository userRepository;
     @Autowired
     private CategoryRepository categoryRepository;
-    @Autowired
-    private RepositoryRestConfiguration restConfigurationUser;
     public static void main(String[] args) {
         SpringApplication.run(AirbusShopApplication.class, args);
     }
 
     @Override
     public void run(String... args) throws Exception {
-        restConfiguration.exposeIdsFor(Product.class);
-       //categoryRepository.save(new Category(null,"computer",null,null ,null));
+        restConfiguration.exposeIdsFor(Product.class,Category.class,User.class);
        categoryRepository.save( new Category(null,"jewelry",null,null,null ));
        categoryRepository.save( new Category(null,"perfumery",null,null,null ));
        categoryRepository.save(new Category(null,"computer",null,null,null ));
@@ -52,11 +49,10 @@ public class AirbusShopApplication implements CommandLineRunner  {
                 p.setPromotion(rnd.nextBoolean());
                 p.setSelected(rnd.nextBoolean());
                 p.setCategory(c);
-                p.setPhotoName("unknown.png");
+                p.setPhotoName("wordpress-categories-640x400 (1).png");
                 productRepository.save(p);
             }
         });
-        restConfigurationUser.exposeIdsFor(User.class);
         userRepository.save(new User(null,"admin","azerty","admin"));
         userRepository.save(new User(null,"julien","chedotal","user"));
         userRepository.save(new User(null,"franck","mbajoumbe","user"));
