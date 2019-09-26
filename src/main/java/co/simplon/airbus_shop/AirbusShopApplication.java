@@ -11,16 +11,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.repository.query.Param;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
-
-import java.util.ArrayList;
-import java.util.List;
+import co.simplon.airbus_shop.service.AccountService;
+import co.simplon.airbus_shop.entities.AppRole;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.util.Random;
+import java.util.stream.Stream;
 
 
 @SpringBootApplication
-public class AirbusShopApplication implements CommandLineRunner  {
+public class AirbusShopApplication  {
     @Autowired
     private ProductRepository productRepository;
     @Autowired
@@ -33,7 +34,7 @@ public class AirbusShopApplication implements CommandLineRunner  {
         SpringApplication.run(AirbusShopApplication.class, args);
     }
 
-    @Override
+   // @Override
     public void run(String... args) throws Exception {
         restConfiguration.exposeIdsFor(Product.class,Category.class,User.class);
        categoryRepository.save( new Category(null,"jewelry",null,null,null ));
@@ -52,13 +53,22 @@ public class AirbusShopApplication implements CommandLineRunner  {
                 p.setPhotoName("wordpress-categories-640x400 (1).png");
                 productRepository.save(p);
             }
-        });
-        userRepository.save(new User(null,"admin","azerty","admin"));
-        userRepository.save(new User(null,"julien","chedotal","user"));
-        userRepository.save(new User(null,"franck","mbajoumbe","user"));
-        userRepository.save((new User(null,"timothe","laude","user")));
-        userRepository.findAll().forEach(u->{
-            System.out.println(u.toString());
-        });
+        });}
+        @Bean
+        CommandLineRunner start(AccountService accountService) {
+            return args->{
+                accountService.save(new AppRole(null,"USER"));
+                accountService.save(new AppRole(null,"ADMIN"));
+                Stream.of("user1","user2","user3","admin").forEach(un->{
+                    accountService.saveUser(un,"1234","1234");
+                });
+                accountService.addRoleToUser("admin","ADMIN");
+            };
+        }
+        @Bean
+        BCryptPasswordEncoder getBCPE(){
+            return new BCryptPasswordEncoder();
+        }
+
     }
-}
+//}
