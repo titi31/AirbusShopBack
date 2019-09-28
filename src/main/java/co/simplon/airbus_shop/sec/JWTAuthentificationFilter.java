@@ -1,4 +1,4 @@
-package co.simplon.airbus_shop.sec;
+/*package co.simplon.airbus_shop.sec;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -56,4 +56,4 @@ public class JWTAuthentificationFilter extends UsernamePasswordAuthenticationFil
         response.addHeader(SecurityParams.JWT_HEADER_NAME,jwt);
     }
 
-}
+}*/

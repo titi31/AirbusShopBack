@@ -1,4 +1,4 @@
-package co.simplon.airbus_shop.sec;
+/*package co.simplon.airbus_shop.sec;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -32,4 +32,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilter(new JWTAuthentificationFilter(authenticationManager()));
         http.addFilterBefore(new JWTAuthentificationFiler(), UsernamePasswordAuthenticationFilter.class);
     }
-}
+}*/

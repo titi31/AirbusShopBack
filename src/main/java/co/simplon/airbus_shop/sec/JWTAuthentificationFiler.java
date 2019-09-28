@@ -1,4 +1,4 @@
-package co.simplon.airbus_shop.sec;
+/*package co.simplon.airbus_shop.sec;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -7,9 +7,9 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.security.core.context.SecurityContextHolder;*/
+//import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+/*import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -62,4 +62,4 @@ public class JWTAuthentificationFiler extends OncePerRequestFilter {
         }
 
     }
-}
+}*/

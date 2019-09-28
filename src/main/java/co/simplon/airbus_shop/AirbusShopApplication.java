@@ -6,6 +6,7 @@ import co.simplon.airbus_shop.dao.UserRepository;
 import co.simplon.airbus_shop.entities.Category;
 import co.simplon.airbus_shop.entities.Product;
 import co.simplon.airbus_shop.entities.User;
+import co.simplon.airbus_shop.service.AccountService;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,13 +16,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import co.simplon.airbus_shop.service.AccountService;
 import co.simplon.airbus_shop.entities.AppRole;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.util.Random;
 import java.util.stream.Stream;
 
 
 @SpringBootApplication
-public class AirbusShopApplication  {
+public class AirbusShopApplication implements  CommandLineRunner {
     @Autowired
     private ProductRepository productRepository;
     @Autowired
@@ -34,7 +35,7 @@ public class AirbusShopApplication  {
         SpringApplication.run(AirbusShopApplication.class, args);
     }
 
-   // @Override
+   @Override
     public void run(String... args) throws Exception {
         restConfiguration.exposeIdsFor(Product.class,Category.class,User.class);
        categoryRepository.save( new Category(null,"jewelry",null,null,null ));
@@ -50,6 +51,8 @@ public class AirbusShopApplication  {
                 p.setPromotion(rnd.nextBoolean());
                 p.setSelected(rnd.nextBoolean());
                 p.setCategory(c);
+                p.setPrice(100 + rnd.nextInt(10000));
+                p.setQuantity(100 + rnd.nextInt(10000));
                 p.setPhotoName("wordpress-categories-640x400 (1).png");
                 productRepository.save(p);
             }
@@ -65,10 +68,10 @@ public class AirbusShopApplication  {
                 accountService.addRoleToUser("admin","ADMIN");
             };
         }
-        @Bean
+      /* @Bean
         BCryptPasswordEncoder getBCPE(){
             return new BCryptPasswordEncoder();
-        }
+        }*/
 
     }
 //}
