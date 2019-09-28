@@ -21,8 +21,8 @@ public class Product implements Serializable {
         private boolean selected;
         private boolean available;
         private String photoName;
-       // private double price;
-       // private int quantity;
+        private double price;
+        private int quantity;
         @ManyToOne
         private Category category;
 

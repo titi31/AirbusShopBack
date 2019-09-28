@@ -1,4 +1,4 @@
-package co.simplon.airbus_shop.sec;
+/*package co.simplon.airbus_shop.sec;
 
 import co.simplon.airbus_shop.entities.AppUser;
 import co.simplon.airbus_shop.service.AccountService;
@@ -30,3 +30,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return new User(appUser.getUsername(),appUser.getPassword(),authorities);
     }
 }
+*/

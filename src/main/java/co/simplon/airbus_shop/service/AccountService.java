@@ -9,3 +9,4 @@ public interface AccountService {
     public AppUser loadUserByUsername(String username);
     public void addRoleToUser(String username,String rolename);
 }
+

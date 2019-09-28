@@ -4,7 +4,7 @@ import co.simplon.airbus_shop.dao.AppRoleRepository;
 import co.simplon.airbus_shop.dao.AppUserRepository;
 import co.simplon.airbus_shop.entities.AppRole;
 import co.simplon.airbus_shop.entities.AppUser;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,12 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class AccountServiceImpl implements AccountService {
     private AppUserRepository appUserRepository;
     private AppRoleRepository appRoleRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+  //  private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public AccountServiceImpl(AppUserRepository appUserRepository, AppRoleRepository appRoleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public AccountServiceImpl(AppUserRepository appUserRepository, AppRoleRepository appRoleRepository/*, BCryptPasswordEncoder bCryptPasswordEncoder*/) {
         this.appUserRepository = appUserRepository;
         this.appRoleRepository = appRoleRepository;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        //this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class AccountServiceImpl implements AccountService {
         AppUser appUser=new AppUser();
         appUser.setUsername(username);
         appUser.setActived(true);
-        appUser.setPassword(bCryptPasswordEncoder.encode(password));
+        appUser.setPassword(/*bCryptPasswordEncoder.encode(*/password);
         appUserRepository.save(appUser);
         addRoleToUser(username,"USER");
         return appUser;
@@ -52,3 +52,4 @@ public class AccountServiceImpl implements AccountService {
         appUser.getRoles().add(appRole);
     }
 }
+
